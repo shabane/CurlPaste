@@ -3,5 +3,6 @@ from .views import root
 
 
 urlpatterns = [
-    path('', root)
+    path('', root),
+    path('<int:idf>/', root),
 ]

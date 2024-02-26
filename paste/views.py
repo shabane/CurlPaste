@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponse, Http404, HttpResponseNotAllowed, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
+
+@csrf_exempt
+def root(request):
+    if request.method == 'POST':
+        return HttpResponse('hi')
+    elif request.method == 'GET':
+        return HttpResponse('by')

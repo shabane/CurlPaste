@@ -1,3 +1,20 @@
 from django.db import models
 
-# Create your models here.
+
+class File(models.Model):
+    name = models.CharField(max_length=128, blank=False, null=False)
+    file = models.FileField(null=False, blank=False)
+    date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    visited = models.IntegerField()
+    password = models.CharField(max_length=1024)
+
+
+class Username(models.Model):
+    name = models.CharField(max_length=255)
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
+
+
+class Limit(models.Model):
+    view = models.IntegerField()
+    time = models.IntegerField()
+    file = models.ForeignKey(File, on_delete=models.CASCADE)

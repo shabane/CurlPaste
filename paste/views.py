@@ -15,11 +15,16 @@ def root(request, idf=None):
         return HttpResponse('file saved')
     elif request.method == 'GET':
         if idf:
-            try:
-                fli = File.objects.get(pk=idf).file.path
-                if fli:
-                    fli = open(fli, 'rb')
-                    return FileResponse(fli)
+            try: # To find the file or username
+                try: # To check if idf is digit
+                    idf = int(idf)
+                    fli = File.objects.get(pk=idf).file.path
+                    if fli:
+                        fli = open(fli, 'rb')
+                        return FileResponse(fli)
+                except:
+                    ...
+
             except:
                 return HttpResponseNotFound('404') #TODO: replace this with html
         return HttpResponse('wellcome') #TODO: replace this with html and render

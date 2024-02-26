@@ -5,8 +5,8 @@ class File(models.Model):
     name = models.CharField(max_length=128, blank=False, null=False)
     file = models.FileField(null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    visited = models.IntegerField()
-    password = models.CharField(max_length=1024)
+    visited = models.IntegerField(default=0)
+    password = models.CharField(max_length=1024, null=True, blank=False)
 
 
 class Username(models.Model):

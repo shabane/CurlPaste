@@ -27,7 +27,7 @@ def root(request, idf=None, username=None):
         elif username:
             files = []
             for user in Username.objects.filter(name=username):
-                files.append(f'{request.get_host()}/{user.file.id}\r\n')
+                files.append(f'{request.get_host()}/file/{user.file}\r\n')
             return HttpResponse(files)
         return HttpResponse('wellcome') #TODO: replace this with html and render
 

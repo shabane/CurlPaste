@@ -19,8 +19,9 @@ def root(request, idf=None, username=None):
                 idf = int(idf)
                 fli = File.objects.get(pk=idf).file.path
                 if fli:
-                    fli = open(fli, 'rb')
-                    return FileResponse(fli, filename=str(fli))
+                    return HttpResponseRedirect(f'/file/{os.path.basename(fli)}')
+                    # fli = open(fli, 'rb')
+                    # return FileResponse(fli, filename=str(fli))
             except:
                 return HttpResponseNotFound('404') #TODO: replace this with html
         elif username:

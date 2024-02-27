@@ -10,9 +10,7 @@ from .models import File, Limit, Username
 @csrf_exempt
 def root(request, idf=None, username=None):
     if request.method == 'POST':
-        print()
-        interpret(request)
-        return HttpResponse('file saved')
+        return HttpResponse(f'{request.get_host()}/file/{interpret(request)}')
     elif request.method == 'GET':
         if idf:
             try: # To find the file or username

@@ -29,3 +29,8 @@ def root(request, idf=None, username=None):
                 files.append(f'{request.get_host()}/{user.file.id}\r\n')
             return HttpResponse(files)
         return HttpResponse('wellcome') #TODO: replace this with html and render
+
+
+def file_serv(request, path):
+    if request.method == 'GET':
+        return FileResponse(File.objects.get(file=path).file)

@@ -20,7 +20,7 @@ def root(request, idf=None, username=None):
                 fli = File.objects.get(pk=idf).file.path
                 if fli:
                     fli = open(fli, 'rb')
-                    return FileResponse(fli)
+                    return FileResponse(fli, filename=str(fli))
             except:
                 return HttpResponseNotFound('404') #TODO: replace this with html
         elif username:

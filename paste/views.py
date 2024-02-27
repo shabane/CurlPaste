@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseNotAllowed, HttpResponseRedirect, FileResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseNotAllowed, HttpResponseRedirect, FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from curlpaste.settings import MEDIA_ROOT
 from hashlib import md5
@@ -24,5 +24,8 @@ def root(request, idf=None, username=None):
             except:
                 return HttpResponseNotFound('404') #TODO: replace this with html
         elif username:
-            return HttpResponse(username)
+            files = []
+            for user in Username.objects.filter(name=username):
+                files.append(f'{request.get_host()}/{user.file.id}\r\n')
+            return HttpResponse(files)
         return HttpResponse('wellcome') #TODO: replace this with html and render

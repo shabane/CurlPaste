@@ -1,3 +1,5 @@
+from sympy.codegen.fnodes import use
+
 from .models import File, Limit, Username
 from hashlib import md5
 
@@ -29,15 +31,14 @@ def interpret(request):
     if request.FILES.dict().get('file'):
         file = request.FILES.get('file')
         name = name_it(file)
-        return save(file, name, request.GET.get('password'))
+        return f"{request.get_host()}/file/{save(file, name, request.GET.get('password'))}"
     elif request.FILES.dict().get('once'):
         file = request.FILES.get('once')
         name = name_it(file)
-        return save(file, name, request.GET.get('password'), v_limit=1)
+        return f"{request.get_host()}/file/{save(file, name, request.GET.get('password'), v_limit=1)}"
     else:
         #TODO: split username and other interprets
         username = list(request.FILES.keys())[0]
         file = request.FILES.get(username)
         name = name_it(file)
-        save(file, name, request.GET.get('password'), username=username)
-        return username
+        return f"{request.get_host()}/{username}"

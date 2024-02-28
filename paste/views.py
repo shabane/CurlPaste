@@ -11,7 +11,7 @@ from django.shortcuts import render
 @csrf_exempt
 def root(request, idf=None, username=None):
     if request.method == 'POST':
-        return HttpResponse(f'{request.get_host()}/file/{interpret(request)}')
+        return HttpResponse(f'{interpret(request)}')
     elif request.method == 'GET':
         if idf:
             try: # To find the file or username

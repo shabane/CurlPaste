@@ -5,6 +5,7 @@ from hashlib import md5
 import os.path
 from .utils import interpret
 from .models import File, Limit, Username
+from django.shortcuts import render
 
 
 @csrf_exempt
@@ -27,7 +28,7 @@ def root(request, idf=None, username=None):
             for user in Username.objects.filter(name=username):
                 files.append(f'{request.get_host()}/file/{user.file}\r\n')
             return HttpResponse(files)
-        return HttpResponse('wellcome') #TODO: replace this with html and render
+        return render(request, 'index.html') #TODO: replace this with html and render
 
 
 def file_serv(request, path):

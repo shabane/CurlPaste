@@ -39,5 +39,5 @@ def interpret(request):
         username = list(request.FILES.keys())[0]
         file = request.FILES.get(username)
         name = name_it(file)
-        save(file, name, request.GET.get('password'))
+        save(file, name, request.GET.get('password'), username=username)
         return f"{request.get_host()}/{username}"

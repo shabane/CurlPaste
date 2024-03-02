@@ -2,6 +2,7 @@
 import sqlite3
 from datetime import datetime, timedelta
 import os
+import time
 
 
 def remove_file(path: str):
@@ -38,3 +39,4 @@ while True:
             remove_file(f'./media/{file[2]}')
             remove_from_db(db, file[0])
             print(file)
+        time.sleep(0.25)

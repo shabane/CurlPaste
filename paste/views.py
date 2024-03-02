@@ -33,4 +33,8 @@ def root(request, idf=None, username=None):
 
 def file_serv(request, path):
     if request.method == 'GET':
-        return FileResponse(File.objects.get(file=path).file)
+        fli = File.objects.get(file=path)
+        fli.visited += 1
+        fli.save()
+        print(fli.visited)
+        return FileResponse(fli.file)

@@ -20,6 +20,12 @@
     - Or
         wget octocat.ir/username -qO - | wget -i -
 
+- you can set a <b>password</b> for each file
+    curl -F file=@yourFile.bkp 'octocat.ir/?password=YourPassword'
+
+- also you can send an entire directory
+    ls /path/to/dir/ | cpio -o | curl octocat.ir -F file=@-
+
 > Remember that files save for 24 hours!
 
 ### Rules

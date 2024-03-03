@@ -9,20 +9,12 @@ def name_it(file) -> str:
 
 #TODO: make 24 dynamic
 def save(file, name: str, password: str, username: str = None, t_limit: int = 24, v_limit: int = 0) -> str:
-    if password:
-        new_file = File(name=name, file=file, password=password)
-        new_file.save()
-        Limit(file=new_file, time=t_limit, view=v_limit).save()
-        if username:
-            Username(file=new_file, name=username).save()
-        return new_file
-    else:
-        new_file = File(name=name, file=file)
-        new_file.save()
-        Limit(file=new_file, time=t_limit, view=v_limit).save()
-        if username:
-            Username(file=new_file, name=username).save()
-        return new_file
+    new_file = File(name=name, file=file, password=password if password else None)
+    new_file.save()
+    Limit(file=new_file, time=t_limit, view=v_limit).save()
+    if username:
+        Username(file=new_file, name=username).save()
+    return new_file
 
 
 def interpret(request):

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import root, file_serv, ping
+from .views import root, file_serv
 
 
 urlpatterns = [

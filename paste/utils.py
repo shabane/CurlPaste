@@ -1,5 +1,6 @@
 from .models import File, Limit, Username
 from hashlib import md5
+from curlpaste import settings
 
 
 def name_it(file) -> str:
@@ -7,8 +8,8 @@ def name_it(file) -> str:
     file_type = file.name.split('.')[-1]
     return md5(file_data).hexdigest() + f'.{file_type}'
 
-#TODO: make 24 dynamic
-def save(file, name: str, password: str, username: str = None, t_limit: int = 24, v_limit: int = 0) -> str:
+def save(file, name: str, password: str, username: str = None, t_limit: int = settings.hours, v_limit: int = 0) -> str:
+    print(t_limit)
     new_file = File(name=name, file=file, password=password if password else None)
     new_file.save()
     Limit(file=new_file, time=t_limit, view=v_limit).save()

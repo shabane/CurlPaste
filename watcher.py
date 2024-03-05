@@ -14,6 +14,7 @@ def remove_from_db(db, id: int):
     cursor.execute(f"DELETE from paste_limit where id = {id}")
     db.commit()
 
+print("watcher started...")
 while True:
     db = sqlite3.connect('db.sqlite3')
     # id, view, time, file

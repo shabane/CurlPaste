@@ -15,13 +15,14 @@ def remove_from_db(db, id: int):
     db.commit()
 
 print("watcher started...")
+db = sqlite3.connect('db.sqlite3')
+
 while True:
-    db = sqlite3.connect('db.sqlite3')
     # id, view, time, file
-    limits = db.execute('select * from paste_limit').fetchmany()
+    limits = db.execute('select * from paste_limit').fetchall()
 
     # id, name, file, date_time, visited, password
-    files = db.execute('select * from paste_file').fetchmany()
+    files = db.execute('select * from paste_file').fetchall()
 
     for file, limit in zip(files, limits):
         _file_time = file[3]
@@ -40,4 +41,4 @@ while True:
             remove_file(f'./media/{file[2]}')
             remove_from_db(db, file[0])
             print(file)
-        time.sleep(0.25)
+    time.sleep(0.25)

@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-RUN apt-get update && apt-get install nginx python3 python3-pip gunicorn -y
+RUN apt-get update && apt-get install python3 python3-pip gunicorn -y
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt

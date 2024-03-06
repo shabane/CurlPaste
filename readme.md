@@ -11,19 +11,19 @@ access and get all the file under that username with just one command.
 
 - HTTP POST files with random URL
 
-    `curl -F file=@yourfile.png octocat.ir`
+    `curl -L -F file=@yourfile.png octocat.ir`
 
 - If you want your file to view just once
 
-    `curl -F once=@yourfile.png octocat.ir`
+    `curl -L -F once=@yourfile.png octocat.ir`
 
 - You can also send file by an username which the user can get all files at once
 
-    `curl -F username=@yourfile.png octocat.ir`
+    `curl -L -F username=@yourfile.png octocat.ir`
 
 - To password protect your files append the password in http query
 
-    `curl -F username=@yourfile.zip octocat.ir/?password=yourPassword`
+    `curl -L -F username=@yourfile.zip octocat.ir/?password=yourPassword`
 
     - To list all the files under a specific username
     
@@ -35,14 +35,14 @@ access and get all the file under that username with just one command.
         
     - To download them just pipe them to wget
     
-        `curl octocat.ir/username | wget -i -`
+        `curl -L octocat.ir/username | wget -i -`
         
     - Or
     
-        `wget localhost:8000/username -qO - | wget -i -`
+        `wget octocat.ir/username -qO - | wget -i -`
 
     - To get password protected files
-        `wget localhost:8000/username/?password=yourPassword -qO - | wget -i -`
+        `wget octocat.ir/username/?password=yourPassword -qO - | wget -i -`
 
 ### Deployment
 

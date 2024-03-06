@@ -31,7 +31,7 @@ access and get all the file under that username with just one command.
         
     - Or using wget
     
-        `wget localhost:8000/username -qO -`
+        `wget octocat/username -qO -`
         
     - To download them just pipe them to wget
     
@@ -43,5 +43,14 @@ access and get all the file under that username with just one command.
 
     - To get password protected files
         `wget localhost:8000/username/?password=yourPassword -qO - | wget -i -`
+
 ### Deployment
-...
+
+to deploy simple just run the **docker image**
+
+```bash
+sudo docker run -p 80:80 mshabane/curlpaste:1.1.0
+```
+
+
+> Note that the server will listen from all sources(0.0.0.0)

@@ -12,6 +12,9 @@ def remove_from_db(db, id: int):
     cursor = db.cursor()
     cursor.execute(f"DELETE from paste_file where id = {id}")
     cursor.execute(f"DELETE from paste_limit where id = {id}")
+    username = db.execute(f'select * from paste_username where file_id = {id}').fetchone()
+    if username:
+        cursor.execute(f"DELETE from paste_username where id = {username[0]}")
     db.commit()
 
 print("watcher started...")

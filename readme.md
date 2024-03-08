@@ -49,7 +49,7 @@ access and get all the file under that username with just one command.
 to deploy simple just run the **docker image**
 
 ```bash
-sudo docker run -p 80:80 mshabane/curlpaste:1.1.2
+sudo docker run -p 80:80 mshabane/curlpaste:1.1.4
 ```
 
 

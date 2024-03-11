@@ -132,3 +132,5 @@ env = environ.Env()
 environ.Env.read_env()
 
 hours = env('HOURS', default=24)
+nemer = env('NAMER', default='rand')
+name_len = env('NAME_LEN', default=6)

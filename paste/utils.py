@@ -32,13 +32,13 @@ def interpret(request):
         name = name_it(file)
         request.FILES.get('file').name = name
         password = request.GET.get('password')
-        return f"{request.get_host()}/file/{save(file, name, password)}/{password if password else ''}"
+        return f"{request.get_host()}/file/{save(file, name, password)}/{f'?password={password}' if password else ''}"
     elif request.FILES.dict().get('once'):
         file = request.FILES.get('once')
         name = name_it(file)
         request.FILES.get('once').name = name
         password = request.GET.get('password')
-        return f"{request.get_host()}/file/{save(file, name, password, v_limit=1)}/{password if password else ''}"
+        return f"{request.get_host()}/file/{save(file, name, password, v_limit=1)}/{f'?password={password}' if password else ''}"
     else:
         #TODO: split username and other interprets
         username = list(request.FILES.keys())[0]
